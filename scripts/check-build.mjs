@@ -40,10 +40,13 @@ for (const page of checkedPages) {
   for (const [currentId, oldId] of Object.entries(legacyHeadingIds[page.href] || {})) {
     const current = $("h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]")
       .toArray().filter(e => $(e).attr("id") === currentId);
-    const legacy = $("[id]").toArray().filter(e => $(e).attr("id") === oldId);
     assert.equal(current.length, 1, `Missing current heading: ${page.href}#${currentId}`);
-    assert.equal(legacy.length, 1, `Missing or duplicated legacy anchor: ${page.href}#${oldId}`);
-    assert.equal(legacy[0].parent, current[0], `Legacy anchor must target its heading: ${page.href}#${oldId}`);
+    const oldIds = Array.isArray(oldId) ? oldId : [oldId];
+    for (const id of oldIds) {
+      const legacy = $("[id]").toArray().filter(e => $(e).attr("id") === id);
+      assert.equal(legacy.length, 1, `Missing or duplicated legacy anchor: ${page.href}#${id}`);
+      assert.equal(legacy[0].parent, current[0], `Legacy anchor must target its heading: ${page.href}#${id}`);
+    }
   }
   for (const element of $(
     "a[href], img[src], script[src], link[href]",
