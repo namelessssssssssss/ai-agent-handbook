@@ -482,6 +482,47 @@ html[data-reading-size="large"] {
 .print-button {
   padding: 5px;
 }
+.offline-button {
+  padding: 4px 10px;
+  min-height: 30px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  transition:
+    border-color 0.2s,
+    background 0.2s,
+    color 0.2s;
+}
+.offline-button:hover:not(:disabled) {
+  border-color: var(--vp-c-brand-1);
+  color: var(--vp-c-brand-1);
+}
+.offline-button.ready {
+  background: var(--vp-c-brand-soft);
+  border-color: transparent;
+  color: var(--vp-c-brand-1);
+}
+.offline-button:disabled {
+  cursor: default;
+}
+.resume-toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 120;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: var(--vp-c-bg-elv);
+  border: 1px solid var(--vp-c-brand-1);
+  color: var(--vp-c-brand-1);
+  font-size: 12px;
+  font-weight: 500;
+  box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.18);
+  pointer-events: none;
+  white-space: nowrap;
+}
 .reading-progress {
   position: fixed;
   top: 0;
@@ -784,6 +825,11 @@ html[data-reading-size="large"] {
     font-size: 15px;
   }
 }
+@media (max-width: 640px) {
+  .print-button {
+    display: none;
+  }
+}
 @media print {
   .VPNav,
   .VPSidebar,
@@ -792,6 +838,7 @@ html[data-reading-size="large"] {
   .VPDocFooter,
   .reader-tools,
   .reading-progress,
+  .resume-toast,
   .book-feedback,
   .image-viewer,
   .VPSkipLink,

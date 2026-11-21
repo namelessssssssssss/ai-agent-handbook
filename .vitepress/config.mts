@@ -37,13 +37,22 @@ export default defineConfig({
       "link",
       { rel: "icon", type: "image/svg+xml", href: `${base}favicon.svg` },
     ],
+    ["link", { rel: "manifest", href: `${base}manifest.webmanifest` }],
+    [
+      "link",
+      { rel: "apple-touch-icon", href: `${base}apple-touch-icon.png` },
+    ],
+    ["meta", { name: "mobile-web-app-capable", content: "yes" }],
+    ["meta", { name: "apple-mobile-web-app-capable", content: "yes" }],
+    ["meta", { name: "apple-mobile-web-app-title", content: "Agent手册" }],
     ["meta", { name: "theme-color", content: "#f8f7f3" }],
     ["meta", { property: "og:type", content: "book" }],
     ["meta", { property: "og:site_name", content: "AI Agent Handbook" }],
   ],
   sitemap: {
     hostname:
-      process.env.SITE_URL || "https://aliyun.github.io/ai-agent-handbook/",
+      process.env.SITE_URL ||
+      "https://namelessssssssssss.github.io/ai-agent-handbook/",
   },
   markdown: {
     math: true,
@@ -95,7 +104,7 @@ export default defineConfig({
     docFooter: { prev: "上一篇", next: "下一篇" },
     editLink: {
       pattern: ({ frontmatter, filePath }) =>
-        `https://github.com/aliyun/ai-agent-handbook/edit/main/${(frontmatter.bookSource || filePath).split("/").map(encodeURIComponent).join("/")}`,
+        `https://github.com/namelessssssssssss/ai-agent-handbook/edit/feat/plain-edition/${(frontmatter.bookSource || filePath).split("/").map(encodeURIComponent).join("/")}`,
       text: "在 GitHub 上完善本页",
     },
     lastUpdated: { text: "最后更新", formatOptions: { dateStyle: "medium" } },

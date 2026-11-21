@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "node scripts/build-challenges.mjs && vitepress dev --host 127.0.0.1",
-    "build": "node scripts/build-challenges.mjs && vitepress build",
+    "build": "node scripts/build-challenges.mjs && vitepress build && node scripts/build-pwa.mjs",
     "preview": "vitepress preview --host 127.0.0.1",
     "game:build": "node game/scripts/build.mjs",
     "game:dev": "npm run game:build && vite game/dist --host 127.0.0.1",

@@ -1,0 +1,33 @@
+{
+  "id": "/ai-agent-handbook/",
+  "name": "AI Agent Handbook · 大白话深读版",
+  "short_name": "Agent手册",
+  "description": "面向企业级智能体的工程实践指南（大白话保真版，支持离线阅读与进度续读）",
+  "lang": "zh-CN",
+  "start_url": "/ai-agent-handbook/?pwa=1",
+  "scope": "/ai-agent-handbook/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#faf9f6",
+  "theme_color": "#214a3b",
+  "icons": [
+    {
+      "src": "/ai-agent-handbook/pwa-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/ai-agent-handbook/pwa-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/ai-agent-handbook/pwa-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

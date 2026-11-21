@@ -3,7 +3,7 @@ import { fileURLToPath } from "node:url";
 import path from "node:path";
 
 export const root = fileURLToPath(new URL("../", import.meta.url));
-export const repository = "https://github.com/aliyun/ai-agent-handbook";
+export const repository = "https://github.com/namelessssssssssss/ai-agent-handbook";
 
 export const parts = [
   {

@@ -1,17 +1,35 @@
 <script setup>
 import { ref, onMounted } from "vue";
-import { withBase } from "vitepress";
+import { useRouter, withBase } from "vitepress";
 import { data as book } from "../../book.data";
+
+const router = useRouter();
 const last = ref(null);
+
 onMounted(() => {
   try {
     const saved = JSON.parse(localStorage.getItem("handbook:last") || "null");
-    if (saved?.href?.startsWith(withBase("/")) && !saved.href.startsWith("//"))
-      last.value = saved;
+    const targetPath =
+      saved?.pathname || (saved?.href || "").split("#")[0] || "";
+    if (targetPath.startsWith(withBase("/")) && !targetPath.startsWith("//")) {
+      last.value = {
+        ...saved,
+        targetPath,
+      };
+    }
   } catch {
     /* Reading works when storage is unavailable. */
   }
 });
+
+function openLast(event) {
+  if (!last.value) return;
+  event.preventDefault();
+  try {
+    sessionStorage.setItem("handbook:pending_restore", "1");
+  } catch {}
+  router.go(last.value.targetPath || last.value.href);
+}
 </script>
 
 <template>
@@ -40,8 +58,16 @@ onMounted(() => {
             >
           </div>
         </div>
-        <a v-if="last" class="continue-reading" :href="last.href"
-          >继续上次阅读：{{ last.title }} <span>→</span></a
+        <a
+          v-if="last"
+          class="continue-reading"
+          :href="last.targetPath || last.href"
+          @click="openLast"
+          >继续上次阅读：{{ last.title
+          }}<template v-if="typeof last.progress === 'number'"
+            >（{{ last.progress }}%）</template
+          >
+          <span>→</span></a
         >
         <a
           class="hero-github"
